@@ -1,0 +1,256 @@
+<div class="container">
+  <div class="vertical-center">
+    <div class="login">
+      <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+
+      <ng-container *ngIf="content === 'Login'">
+        <form [formGroup]="loginForm">
+          <p-card class="">
+            <div class="row">
+              <div class="col-md-12">
+                <span class="p-float-label">
+                  <input
+                    id="username"
+                    type="text"
+                    formControlName="username"
+                    pInputText
+                    [class.error]="
+                      loginForm.controls['username'].touched &&
+                      loginForm.controls['username'].errors
+                    "
+                  />
+                  <label
+                    for="username"
+                    [class.text-danger]="
+                      loginForm.controls['username'].touched &&
+                      loginForm.controls['username'].errors
+                    "
+                    >Username</label
+                  >
+                </span>
+                <span
+                  *ngIf="
+                    loginForm.controls['username'].touched &&
+                    loginForm.controls['username'].errors
+                  "
+                  class="text-danger small"
+                >
+                  This field is required
+                </span>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <span class="p-float-label">
+                  <input
+                    id="password"
+                    type="password"
+                    formControlName="password"
+                    pInputText
+                    [class.error]="
+                      loginForm.controls['password'].touched &&
+                      loginForm.controls['password'].errors
+                    "
+                  />
+                  <label
+                    for="password"
+                    [class.text-danger]="
+                      loginForm.controls['password'].touched &&
+                      loginForm.controls['password'].errors
+                    "
+                    >Password</label
+                  >
+                </span>
+                <span
+                  *ngIf="
+                    loginForm.controls['password'].touched &&
+                    loginForm.controls['password'].errors
+                  "
+                  class="text-danger small"
+                >
+                  This field is required
+                </span>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <button
+                pButton
+                type="button"
+                class="p-button-raised p-button-rounded"
+                label="Login"
+                (click)="login($event)"
+              ></button>
+            </div>
+          </p-card>
+        </form>
+      </ng-container>
+      <ng-container *ngIf="content === 'Signin'">
+        <form [formGroup]="signForm">
+          <p-card>
+            <div class="row">
+              <div class="col-md-12">
+                <span class="p-float-label">
+                  <input
+                    id="username"
+                    type="text"
+                    formControlName="username"
+                    pInputText
+                    [class.error]="
+                      signForm.controls['username'].touched &&
+                      signForm.controls['username'].errors
+                    "
+                  />
+                  <label
+                    for="username"
+                    [class.text-danger]="
+                      signForm.controls['username'].touched &&
+                      signForm.controls['username'].errors
+                    "
+                    >Username</label
+                  >
+                </span>
+                <span
+                  *ngIf="
+                    signForm.controls['username'].touched &&
+                    signForm.controls['username'].errors
+                  "
+                  class="text-danger small"
+                >
+                  This field is required
+                </span>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <span class="p-float-label">
+                  <input
+                    id="password"
+                    type="password"
+                    formControlName="password"
+                    pInputText
+                    [class.error]="
+                      signForm.controls['password'].touched &&
+                      signForm.controls['password'].errors
+                    "
+                  />
+                  <label
+                    for="password"
+                    [class.text-danger]="
+                      signForm.controls['password'].touched &&
+                      signForm.controls['password'].errors
+                    "
+                    >Password</label
+                  >
+                </span>
+                <span
+                  *ngIf="
+                    signForm.controls['password'].touched &&
+                    signForm.controls['password'].errors
+                  "
+                  class="text-danger small"
+                >
+                  This field is required
+                </span>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <span class="p-float-label">
+                  <input
+                    id="confirmPassword"
+                    type="password"
+                    formControlName="confirmPassword"
+                    pInputText
+                    [class.error]="
+                      signForm.controls['confirmPassword'].touched &&
+                      (signForm.controls['confirmPassword'].errors ||
+                        signForm.hasError('mismatchPassword'))
+                    "
+                  />
+                  <label
+                    for="confirmPassword"
+                    [class.text-danger]="
+                      signForm.controls['confirmPassword'].touched &&
+                      (signForm.controls['confirmPassword'].errors ||
+                        signForm.hasError('mismatchPassword'))
+                    "
+                    >Confirm Password</label
+                  >
+                </span>
+                <span
+                  *ngIf="
+                    signForm.controls['confirmPassword'].touched &&
+                    signForm.controls['confirmPassword'].hasError('required')
+                  "
+                  class="text-danger small"
+                >
+                  This field is required
+                </span>
+                <span
+                  *ngIf="
+                    signForm.controls['confirmPassword'].touched &&
+                    signForm.hasError('mismatchPassword')
+                  "
+                  class="text-danger small"
+                >
+                  Mismatch password
+                </span>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <span class="p-float-label">
+                  <input
+                    id="email"
+                    type="email"
+                    formControlName="email"
+                    pInputText
+                    [class.error]="
+                      signForm.controls['email'].touched &&
+                      signForm.controls['email'].errors
+                    "
+                  />
+                  <label
+                    for="email"
+                    [class.text-danger]="
+                      signForm.controls['email'].touched &&
+                      signForm.controls['email'].errors
+                    "
+                    >Email</label
+                  >
+                </span>
+                <span
+                  *ngIf="
+                    signForm.controls['email'].touched &&
+                    signForm.controls['email'].hasError('required')
+                  "
+                  class="text-danger small"
+                >
+                  This field is required
+                </span>
+                <span
+                  *ngIf="
+                    signForm.controls['email'].touched &&
+                    signForm.controls['email'].hasError('email')
+                  "
+                  class="text-danger small"
+                >
+                  Enter a valid email
+                </span>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <button
+                pButton
+                type="button"
+                class="p-button-raised p-button-rounded"
+                label="Signin"
+                (click)="signin($event)"
+              ></button>
+            </div>
+          </p-card>
+        </form>
+      </ng-container>
+    </div>
+  </div>
+</div>
