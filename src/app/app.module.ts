@@ -5,10 +5,20 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { PageModule } from './page/page.module';
 import { AppRoutingModule } from './app-routing.module';
+import { QuizzModule } from './quizz/quizz.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, AuthModule, PageModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AuthModule,
+    PageModule,
+    AppRoutingModule,
+    QuizzModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

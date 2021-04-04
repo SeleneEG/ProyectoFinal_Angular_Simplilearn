@@ -1,0 +1,377 @@
+<p-toast></p-toast>
+<div class="mt-5">
+  <p-panel header="Create Quiz">
+    <form [formGroup]="quizForm">
+      <div class="row">
+        <div class="col-md-6 mt-4">
+          <span class="p-float-label">
+            <input
+              id="title"
+              type="text"
+              formControlName="title"
+              pInputText
+              [class.error]="
+                quizForm.controls['title'].touched &&
+                quizForm.controls['title'].errors
+              "
+            />
+            <label
+              for="title"
+              [class.text-danger]="
+                quizForm.controls['title'].touched &&
+                quizForm.controls['title'].errors
+              "
+              >Title</label
+            >
+          </span>
+          <span
+            *ngIf="
+              quizForm.controls['title'].touched &&
+              quizForm.controls['title'].errors
+            "
+            class="text-danger small"
+          >
+            This field is required
+          </span>
+        </div>
+        <div class="col-md-3 mt-4">
+          <span class="p-float-label">
+            <p-dropdown
+              inputId="key"
+              [autoDisplayFirst]="false"
+              [options]="categories"
+              optionLabel="value"
+              formControlName="category"
+              autoWidth="false"
+              [class.error]="
+                quizForm.controls['category'].touched &&
+                quizForm.controls['category'].errors
+              "
+              [style]="{ 'min-width': '100%' }"
+            ></p-dropdown>
+            <label
+              for="category"
+              [class.text-danger]="
+                quizForm.controls['category'].touched &&
+                quizForm.controls['category'].errors
+              "
+              >Category</label
+            >
+          </span>
+          <span
+            *ngIf="
+              quizForm.controls['category'].touched &&
+              quizForm.controls['category'].errors
+            "
+            class="text-danger small"
+          >
+            This field is required
+          </span>
+        </div>
+        <div class="col-md-3 mt-4">
+          <span class="p-float-label">
+            <p-dropdown
+              inputId="key"
+              [autoDisplayFirst]="false"
+              [options]="difficultyArray"
+              optionLabel="value"
+              formControlName="difficulty"
+              autoWidth="false"
+              [class.error]="
+                quizForm.controls['difficulty'].touched &&
+                quizForm.controls['difficulty'].errors
+              "
+              [style]="{ 'min-width': '100%' }"
+            ></p-dropdown>
+            <label
+              for="difficulty"
+              [class.text-danger]="
+                quizForm.controls['difficulty'].touched &&
+                quizForm.controls['difficulty'].errors
+              "
+              >Difficulty</label
+            >
+          </span>
+          <span
+            *ngIf="
+              quizForm.controls['difficulty'].touched &&
+              quizForm.controls['difficulty'].errors
+            "
+            class="text-danger small"
+          >
+            This field is required
+          </span>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="m-3" [hidden]="questions.length > 0">
+          <strong> * Please enter at least one question</strong>
+        </div>
+        <p-panel class="m-3" header="Questions">
+          <button
+            pButton
+            pRipple
+            label="New"
+            icon="pi pi-plus"
+            class="p-button-success p-mr-2 mt-4 mb-4"
+            (click)="openNew()"
+          ></button>
+
+          <p-card class="m-3">
+            <p-table
+              [value]="questions"
+              [rowHover]="true"
+              dataKey="quizzNumber"
+            >
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>quizzNumber</th>
+                  <th>Question</th>
+                  <th>Option 1</th>
+                  <th>Option 2</th>
+                  <th>Option 3</th>
+                  <th>Answer</th>
+                  <th></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-question>
+                <tr>
+                  <td>{{ question.quizzNumber }}</td>
+                  <td>{{ question.question }}</td>
+                  <td>{{ question.option1 }}</td>
+                  <td>{{ question.option2 }}</td>
+                  <td>{{ question.option3 }}</td>
+                  <td>{{ question.answer }}</td>
+                  <td>
+                    <button
+                      pButton
+                      pRipple
+                      icon="pi pi-pencil"
+                      class="p-button-rounded p-button-success p-mr-2"
+                      (click)="editQuestion(question)"
+                    ></button>
+                    <button
+                      pButton
+                      pRipple
+                      icon="pi pi-trash"
+                      class="p-button-rounded p-button-warning"
+                      (click)="deleteQuestion(question)"
+                    ></button>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </p-card>
+        </p-panel>
+      </div>
+      <div class="row mt-4">
+        <button
+          pButton
+          type="button"
+          class="p-button-raised p-button-rounded submitButton"
+          label="Save Quiz"
+          (click)="saveQuiz()"
+        ></button>
+      </div>
+    </form>
+  </p-panel>
+</div>
+
+<p-dialog
+  [(visible)]="questionDialog"
+  [style]="{ width: '700px', height: '450px' }"
+  header="Question Details"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <form [formGroup]="questionForm">
+      <div class="row">
+        <div class="col-md-12 mt-2">
+          <label
+            for="question"
+            [class.text-danger]="
+              questionForm.controls['question'].touched &&
+              questionForm.controls['question'].errors
+            "
+            >Question</label
+          >
+          <textarea
+            id="question"
+            rows="3"
+            cols="30"
+            formControlName="question"
+            pInputTextarea
+            [style]="{ 'min-width': '100%' }"
+          ></textarea>
+
+          <span
+            *ngIf="
+              questionForm.controls['question'].touched &&
+              questionForm.controls['question'].errors
+            "
+            class="text-danger small"
+          >
+            This field is required
+          </span>
+        </div>
+      </div>
+      <p-divider align="center">Options</p-divider>
+      <div>
+        <strong [class.text-danger]="noAnswerChecked"
+          >*Check one as the correct answer</strong
+        >
+      </div>
+      <div class="row align-items-center mt-3">
+        <div class="col-md-1">
+          <div class="p-field-radiobutton">
+            <p-radioButton
+              formControlName="answer"
+              name="answer"
+              value="1"
+              id="option1"
+            ></p-radioButton>
+          </div>
+        </div>
+        <div class="col-md-11">
+          <span class="p-float-label">
+            <input
+              id="option1"
+              type="text"
+              formControlName="option1"
+              pInputText
+              [class.error]="
+                questionForm.controls['option1'].touched &&
+                questionForm.controls['option1'].errors
+              "
+            />
+            <label
+              for="option1"
+              [class.text-danger]="
+                questionForm.controls['option1'].touched &&
+                questionForm.controls['option1'].errors
+              "
+              >Option 1</label
+            >
+          </span>
+          <span
+            *ngIf="
+              questionForm.controls['option1'].touched &&
+              questionForm.controls['option1'].errors
+            "
+            class="text-danger small"
+          >
+            This field is required
+          </span>
+        </div>
+      </div>
+      <div class="row align-items-center mt-3">
+        <div class="col-md-1">
+          <div class="p-field-radiobutton">
+            <p-radioButton
+              formControlName="answer"
+              name="answer"
+              value="2"
+              id="opc2"
+            ></p-radioButton>
+          </div>
+        </div>
+        <div class="col-md-11">
+          <span class="p-float-label">
+            <input
+              id="option2"
+              type="text"
+              formControlName="option2"
+              pInputText
+              [class.error]="
+                questionForm.controls['option2'].touched &&
+                questionForm.controls['option2'].errors
+              "
+            />
+            <label
+              for="option2"
+              [class.text-danger]="
+                questionForm.controls['option2'].touched &&
+                questionForm.controls['option2'].errors
+              "
+              >Option 2</label
+            >
+          </span>
+          <span
+            *ngIf="
+              questionForm.controls['option2'].touched &&
+              questionForm.controls['option2'].errors
+            "
+            class="text-danger small"
+          >
+            This field is required
+          </span>
+        </div>
+      </div>
+      <div class="row align-items-center mt-3">
+        <div class="col-md-1">
+          <div class="p-field-radiobutton">
+            <p-radioButton
+              formControlName="answer"
+              name="answer"
+              value="3"
+              id="opc3"
+            ></p-radioButton>
+          </div>
+        </div>
+        <div class="col-md-11">
+          <span class="p-float-label">
+            <input
+              id="option3"
+              type="text"
+              formControlName="option3"
+              pInputText
+              [class.error]="
+                questionForm.controls['option3'].touched &&
+                questionForm.controls['option3'].errors
+              "
+            />
+            <label
+              for="option3"
+              [class.text-danger]="
+                questionForm.controls['option3'].touched &&
+                questionForm.controls['option3'].errors
+              "
+              >Option 3</label
+            >
+          </span>
+          <span
+            *ngIf="
+              questionForm.controls['option3'].touched &&
+              questionForm.controls['option3'].errors
+            "
+            class="text-danger small"
+          >
+            This field is required
+          </span>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveQuestion()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

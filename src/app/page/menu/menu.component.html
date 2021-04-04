@@ -1,1 +1,13 @@
-<p>menu works!</p>
+<p-menubar [model]="items">
+  <div>
+    <button
+      type="button"
+      pButton
+      label="Logout"
+      icon="pi pi-power-off"
+      style="margin-left: 0.25em"
+      class="p-button-raised p-button-rounded"
+      (click)="logout()"
+    ></button>
+  </div>
+</p-menubar>

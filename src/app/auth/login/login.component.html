@@ -6,6 +6,14 @@
       <ng-container *ngIf="content === 'Login'">
         <form [formGroup]="loginForm">
           <p-card class="">
+            <div class="row mb-3" *ngIf="checkLoginInfo">
+              <div class="col-md-12">
+                <span class="text-danger small">
+                  The username and password you entered did not match our
+                  records. Please double-check and try again
+                </span>
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-12">
                 <span class="p-float-label">
@@ -87,6 +95,14 @@
       <ng-container *ngIf="content === 'Signin'">
         <form [formGroup]="signForm">
           <p-card>
+            <div class="row mb-3" *ngIf="checkSigninInfo">
+              <div class="col-md-12">
+                <span class="text-danger small">
+                  The username you entered is not available. Please enter a new
+                  one and try again
+                </span>
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-12">
                 <span class="p-float-label">

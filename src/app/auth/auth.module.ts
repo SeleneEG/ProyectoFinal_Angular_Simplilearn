@@ -9,6 +9,8 @@ import { PanelModule } from 'primeng/panel';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { PasswordModule } from 'primeng/password';
+import { UserService } from '../services/user.service';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -22,7 +24,9 @@ import { ButtonModule } from 'primeng/button';
     PanelModule,
     InputTextModule,
     ButtonModule,
+    PasswordModule,
   ],
   exports: [LoginComponent],
+  providers: [UserService],
 })
 export class AuthModule {}
