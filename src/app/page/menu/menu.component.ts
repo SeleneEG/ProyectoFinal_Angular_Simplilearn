@@ -38,7 +38,7 @@ export class MenuComponent implements OnInit {
         label: 'Take Quizz',
         icon: 'pi pi-fw pi-question',
         command: (event) => {
-          console.log(`Navega a edit user info`);
+          this.route.navigateByUrl('/content/all-quizz');
         },
       },
       {

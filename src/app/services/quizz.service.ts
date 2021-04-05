@@ -22,4 +22,12 @@ export class QuizzService {
     const params = new HttpParams({ fromObject: data });
     return this.http.get<Quizz[]>(`${this.endPointURL}`, { params });
   }
+
+  getQuiz(): Observable<Quizz[]> {
+    return this.http.get<Quizz[]>(`${this.endPointURL}`);
+  }
+
+  getQuizById(id: number): Observable<Quizz> {
+    return this.http.get<Quizz>(`${this.endPointURL}/${id}`);
+  }
 }

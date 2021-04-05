@@ -22,6 +22,8 @@ import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FileUploadModule } from 'primeng/fileupload';
+import { TakeQuizzComponent } from './take-quizz/take-quizz.component';
+import { AllQuizzComponent } from './all-quizz/all-quizz.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     EditQuizzComponent,
     AddQuizzComponent,
     DeleteQuizzComponent,
+    TakeQuizzComponent,
+    AllQuizzComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +58,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     DeleteQuizzComponent,
     EditQuizzComponent,
     UserQuizzComponent,
+    TakeQuizzComponent,
+    AllQuizzComponent,
   ],
   providers: [MessageService, ConfirmationService],
 })

@@ -1,0 +1,49 @@
+<div class="mt-5" *ngIf="quiz">
+  <p-panel [header]="title">
+    <ng-container *ngFor="let item of quiz.elements">
+      <p-divider align="left">
+        <div class="p-d-inline-flex p-ai-center">
+          <i class="pi pi-question-circle mr-2"></i>
+          <b>Question {{ item.quizzNumber }}</b>
+        </div>
+      </p-divider>
+      <div class="row">
+        <div class="col-md-12">
+          <i>{{ item.question }}</i>
+        </div>
+        <div class="col-md-12 ml-4">
+          <div class="p-field-radiobutton m-1 mt-3">
+            <p-radioButton
+              name="question{{ item.quizzNumber }}"
+              value="1"
+              label="{{ item.option1 }}"
+            ></p-radioButton>
+          </div>
+          <div class="p-field-radiobutton m-1">
+            <p-radioButton
+              name="question{{ item.quizzNumber }}"
+              value="2"
+              label="{{ item.option2 }}"
+            ></p-radioButton>
+          </div>
+          <div class="p-field-radiobutton m-1">
+            <p-radioButton
+              name="question{{ item.quizzNumber }}"
+              value="3"
+              label="{{ item.option3 }}"
+            ></p-radioButton>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="row mt-4">
+      <button
+        pButton
+        type="button"
+        class="p-button-raised p-button-rounded submitButton"
+        label="Send Quiz!"
+        (click)="sendQuiz()"
+      ></button>
+    </div>
+  </p-panel>
+</div>

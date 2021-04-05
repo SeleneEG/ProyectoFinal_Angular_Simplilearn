@@ -1,0 +1,56 @@
+<div class="mt-5">
+  <p-panel header="All Quizzes">
+    <p-table [value]="quizzes" [rowHover]="true" dataKey="id" class="m-5">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 35%; text-align: center; vertical-align: middle">
+            Title
+          </th>
+          <th style="width: 15%; text-align: center; vertical-align: middle">
+            Category
+          </th>
+          <th style="width: 10%; text-align: center; vertical-align: middle">
+            Difficulty
+          </th>
+          <th style="width: 15%; text-align: center; vertical-align: middle">
+            Creation Date
+          </th>
+          <th style="width: 15%; text-align: center; vertical-align: middle">
+            # Questions
+          </th>
+          <th
+            style="width: 10%; text-align: center; vertical-align: middle"
+          ></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-quiz>
+        <tr>
+          <td style="text-align: center; vertical-align: middle">
+            {{ quiz.title }}
+          </td>
+          <td style="text-align: center; vertical-align: middle">
+            {{ quiz.category }}
+          </td>
+          <td style="text-align: center; vertical-align: middle">
+            {{ quiz.difficulty }}
+          </td>
+          <td style="text-align: center; vertical-align: middle">
+            {{ quiz.creationDate | date }}
+          </td>
+          <td style="text-align: center; vertical-align: middle">
+            {{ quiz.elements.length }}
+          </td>
+          <td style="text-align: center; vertical-align: middle">
+            <button
+              pButton
+              pRipple
+              icon="pi pi-play"
+              class="p-button-rounded p-button-success p-mr-2"
+              (click)="takeQuiz(quiz)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-panel>
+</div>
