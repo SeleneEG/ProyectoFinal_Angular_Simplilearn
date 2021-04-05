@@ -1,6 +1,33 @@
 <p-toast></p-toast>
 <div class="mt-5">
-  <p-panel header="Create Quiz">
+  <p-panel header="Upload a quiz" [toggleable]="true" collapsed="true">
+    <input
+      type="file"
+      id="file"
+      class="m-5"
+      (change)="handleFileInput($event.target.files)"
+    />
+
+    <pre
+      style="background-color: whitesmoke"
+      [hidden]="!fileContent"
+      class="p-3 ml-5 mr-5"
+    >
+      {{ fileContent | json }}
+    </pre>
+    <div class="row mt-4">
+      <button
+        pButton
+        [hidden]="!fileContent"
+        type="button"
+        class="p-button-raised p-button-rounded submitButton"
+        label="Save Quiz"
+        (click)="saveLoadedQuiz()"
+      ></button>
+    </div>
+  </p-panel>
+  <p-divider align="center">OR</p-divider>
+  <p-panel header="Capture a quiz" [toggleable]="true" collapsed="true">
     <form [formGroup]="quizForm">
       <div class="row">
         <div class="col-md-6 mt-4">
@@ -37,10 +64,10 @@
         <div class="col-md-3 mt-4">
           <span class="p-float-label">
             <p-dropdown
-              inputId="key"
+              inputId="id"
               [autoDisplayFirst]="false"
               [options]="categories"
-              optionLabel="value"
+              optionLabel="name"
               formControlName="category"
               autoWidth="false"
               [class.error]="
@@ -117,51 +144,45 @@
             (click)="openNew()"
           ></button>
 
-          <p-card class="m-3">
-            <p-table
-              [value]="questions"
-              [rowHover]="true"
-              dataKey="quizzNumber"
-            >
-              <ng-template pTemplate="header">
-                <tr>
-                  <th>quizzNumber</th>
-                  <th>Question</th>
-                  <th>Option 1</th>
-                  <th>Option 2</th>
-                  <th>Option 3</th>
-                  <th>Answer</th>
-                  <th></th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-question>
-                <tr>
-                  <td>{{ question.quizzNumber }}</td>
-                  <td>{{ question.question }}</td>
-                  <td>{{ question.option1 }}</td>
-                  <td>{{ question.option2 }}</td>
-                  <td>{{ question.option3 }}</td>
-                  <td>{{ question.answer }}</td>
-                  <td>
-                    <button
-                      pButton
-                      pRipple
-                      icon="pi pi-pencil"
-                      class="p-button-rounded p-button-success p-mr-2"
-                      (click)="editQuestion(question)"
-                    ></button>
-                    <button
-                      pButton
-                      pRipple
-                      icon="pi pi-trash"
-                      class="p-button-rounded p-button-warning"
-                      (click)="deleteQuestion(question)"
-                    ></button>
-                  </td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </p-card>
+          <p-table [value]="questions" [rowHover]="true" dataKey="quizzNumber">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>#</th>
+                <th>Question</th>
+                <th>Option 1</th>
+                <th>Option 2</th>
+                <th>Option 3</th>
+                <th>Answer</th>
+                <th></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-question>
+              <tr>
+                <td>{{ question.quizzNumber }}</td>
+                <td>{{ question.question }}</td>
+                <td>{{ question.option1 }}</td>
+                <td>{{ question.option2 }}</td>
+                <td>{{ question.option3 }}</td>
+                <td>{{ question.answer }}</td>
+                <td>
+                  <button
+                    pButton
+                    pRipple
+                    icon="pi pi-pencil"
+                    class="p-button-rounded p-button-success p-mr-2"
+                    (click)="editQuestion(question)"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    icon="pi pi-trash"
+                    class="p-button-rounded p-button-warning"
+                    (click)="deleteQuestion(question)"
+                  ></button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
         </p-panel>
       </div>
       <div class="row mt-4">

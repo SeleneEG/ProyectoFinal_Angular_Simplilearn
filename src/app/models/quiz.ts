@@ -3,7 +3,7 @@ import { QuizItem } from './quiz-item';
 export interface Quizz {
   id?: number;
   authorId: number;
-  name: string;
+  title: string;
   category: string;
   difficulty: string;
   creationDate: Date;

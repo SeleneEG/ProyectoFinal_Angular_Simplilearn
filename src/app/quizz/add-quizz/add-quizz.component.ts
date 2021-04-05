@@ -4,6 +4,12 @@ import { QuizItem } from 'src/app/models/quiz-item';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 
+import { QuizCategoryService } from 'src/app/services/quiz-category.service';
+import { Quizz } from 'src/app/models/quiz';
+import { QuizzService } from 'src/app/services/quizz.service';
+import { JsonPipe } from '@angular/common';
+import { QuizCategory } from 'src/app/models/quiz-category';
+
 @Component({
   selector: 'app-add-quizz',
   templateUrl: './add-quizz.component.html',
@@ -11,32 +17,8 @@ import { MessageService } from 'primeng/api';
 })
 export class AddQuizzComponent implements OnInit {
   questions: QuizItem[] = [];
-
-  // {
-  //   quizzNumber: 1,
-  //   question: 'question a',
-  //   option1: 'option1 a1',
-  //   option2: 'option2 a2',
-  //   option3: 'option3 a3',
-  //   answer: 1,
-  // },
-  // {
-  //   quizzNumber: 2,
-  //   question: 'question b',
-  //   option1: 'option1 b',
-  //   option2: 'option2 b',
-  //   option3: 'option3 b',
-  //   answer: 2,
-  // },
-  // {
-  //   quizzNumber: 3,
-  //   question: 'question c',
-  //   option1: 'option1 c',
-  //   option2: 'option2 c',
-  //   option3: 'option3 c',
-  //   answer: 3,
-  // },
-
+  jsonFile: File = null;
+  fileContent: JSON = null;
   editItem: QuizItem = null;
   noAnswerChecked: boolean = false;
   questionDialog: boolean;
@@ -58,34 +40,82 @@ export class AddQuizzComponent implements OnInit {
     answer: new FormControl('', Validators.required),
   });
 
-  correctAnswer: any[] = [
-    { name: 'A', key: 'A' },
-    { name: 'A', key: 'M' },
-    { name: 'A', key: 'P' },
-    { name: 'A', key: 'R' },
-  ];
-
-  categories: { key: string; value: string }[] = [
-    { key: 'cat1', value: 'Category 1' },
-    { key: 'cat2', value: 'Category 2' },
-    { key: 'cat3', value: 'Category 3' },
-  ];
+  categories: QuizCategory[] = [];
 
   difficultyArray: { key: string; value: string }[] = [
-    { key: 'HIGH', value: 'High' },
-    { key: 'MEDIUM', value: 'Medium' },
-    { key: 'LOW', value: 'Low' },
+    { key: 'High', value: 'High' },
+    { key: 'Medium', value: 'Medium' },
+    { key: 'Low', value: 'Low' },
   ];
 
   constructor(
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private quizCategoryService: QuizCategoryService,
+    private quizService: QuizzService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.quizCategoryService.getCategory().subscribe((resp) => {
+      this.categories = resp;
+    });
+  }
+
+  handleFileInput(files: FileList) {
+    this.jsonFile = files.item(0);
+
+    let fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      // let aux: string = fileReader.result.toString();
+      // this.fileContent = JSON.parse(aux);
+      this.fileContent = JSON.parse(fileReader.result.toString());
+    };
+    fileReader.readAsText(this.jsonFile);
+  }
+
+  saveLoadedQuiz() {
+    let quiz: Quizz = {
+      authorId: +localStorage.getItem('userId'),
+      title: this.fileContent['title'],
+      category: this.fileContent['category'],
+      difficulty: this.fileContent['difficulty'],
+      creationDate: new Date(),
+      elements: this.fileContent['elements'],
+    };
+
+    this.quizService.createQuiz(quiz).subscribe((resp) => {
+      this.fileContent = null;
+      this.jsonFile = null;
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Successful',
+        detail: `Quiz '${quiz.title}' saved`,
+        life: 3000,
+      });
+    });
+  }
 
   saveQuiz() {
-    if (this.quizForm.valid) {
+    if (this.quizForm.valid && this.questions.length > 0) {
+      let quiz: Quizz = {
+        authorId: +localStorage.getItem('userId'),
+        title: this.fileContent['title'],
+        category: this.fileContent['category'],
+        difficulty: this.fileContent['difficulty'],
+        creationDate: new Date(),
+        elements: this.fileContent['elements'],
+      };
+
+      this.quizService.createQuiz(quiz).subscribe((resp) => {
+        this.quizForm.reset();
+        this.questions = [];
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: `Quiz '${quiz.title}' saved`,
+          life: 3000,
+        });
+      });
     } else {
       this.quizForm.markAllAsTouched();
       if (this.questions.length == 0) {

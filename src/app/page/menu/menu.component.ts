@@ -26,8 +26,8 @@ export class MenuComponent implements OnInit {
             },
           },
           {
-            label: 'Show all',
-            icon: 'pi pi-fw pi-trash',
+            label: 'Your Quizzes',
+            icon: 'pi pi-fw pi-bars',
             command: (event) => {
               this.route.navigateByUrl('/content/user-quizz');
             },
@@ -35,47 +35,15 @@ export class MenuComponent implements OnInit {
         ],
       },
       {
-        label: 'User',
-        icon: 'pi pi-fw pi-user',
-        items: [
-          {
-            label: 'Edit',
-            icon: 'pi pi-fw pi-user-edit',
-            command: (event) => {
-              console.log(`Navega a edit user info`);
-            },
-          },
-        ],
+        label: 'Take Quizz',
+        icon: 'pi pi-fw pi-question',
+        command: (event) => {
+          console.log(`Navega a edit user info`);
+        },
       },
       {
-        label: 'Events',
-        icon: 'pi pi-fw pi-calendar',
-        items: [
-          {
-            label: 'Edit',
-            icon: 'pi pi-fw pi-pencil',
-            items: [
-              {
-                label: 'Save',
-                icon: 'pi pi-fw pi-calendar-plus',
-              },
-              {
-                label: 'Delete',
-                icon: 'pi pi-fw pi-calendar-minus',
-              },
-            ],
-          },
-          {
-            label: 'Archieve',
-            icon: 'pi pi-fw pi-calendar-times',
-            items: [
-              {
-                label: 'Remove',
-                icon: 'pi pi-fw pi-calendar-minus',
-              },
-            ],
-          },
-        ],
+        label: `${localStorage.getItem('username')}`,
+        icon: 'pi pi-fw pi-user',
       },
     ];
   }

@@ -1,1 +1,41 @@
-<p>user-quizz works!</p>
+<div class="mt-5">
+  <p-panel header="Your Quizzes">
+    <p-table [value]="quizzes" [rowHover]="true" dataKey="id" class="m-5">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Difficulty</th>
+          <th>Creation Date</th>
+          <th># Questions</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-quiz>
+        <tr>
+          <td>{{ quiz.title }}</td>
+          <td>{{ quiz.category }}</td>
+          <td>{{ quiz.difficulty }}</td>
+          <td>{{ quiz.creationDate | date }}</td>
+          <td>{{ quiz.elements.length }}</td>
+          <td>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-success p-mr-2"
+              (click)="editQuiz(quiz)"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-warning"
+              (click)="deleteQuiz(quiz)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-panel>
+</div>

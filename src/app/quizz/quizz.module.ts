@@ -21,6 +21,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     DividerModule,
     CardModule,
     CheckboxModule,
+    FileUploadModule,
   ],
   exports: [
     AddQuizzComponent,
