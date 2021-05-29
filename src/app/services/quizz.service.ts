@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { Quizz } from '../models/quiz';
 
 @Injectable({

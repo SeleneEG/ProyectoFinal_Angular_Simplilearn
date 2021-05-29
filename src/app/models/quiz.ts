@@ -8,4 +8,5 @@ export interface Quizz {
   difficulty: string;
   creationDate: Date;
   elements: QuizItem[];
+  authorName?: string;
 }

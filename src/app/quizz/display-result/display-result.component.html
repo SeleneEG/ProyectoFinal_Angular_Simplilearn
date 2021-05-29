@@ -1,35 +1,54 @@
-<div class="mt-5" *ngIf="quiz">
+<div class="mt-5">
   <p-panel [header]="title">
     <ng-container *ngFor="let item of quiz.elements">
       <p-divider align="left">
-        <div *ngIf="!checkAnswers" class="p-d-inline-flex p-ai-center">
-          <i class="pi pi-question-circle mr-2"></i>
+        <div
+          *ngIf="!checkAnswer(item.quizzNumber)"
+          class="p-d-inline-flex p-ai-center"
+          style="color: crimson"
+        >
+          <i class="pi pi-times-circle mr-2" style="font-size: large"></i>
+          <b>Question {{ item.quizzNumber }}</b>
+        </div>
+        <div
+          *ngIf="checkAnswer(item.quizzNumber)"
+          class="p-d-inline-flex p-ai-center"
+          style="color: green"
+        >
+          <i style="font-size: large" class="pi pi-check-circle mr-2"></i>
           <b>Question {{ item.quizzNumber }}</b>
         </div>
       </p-divider>
       <form [formGroup]="quizForm">
         <div class="row">
           <div class="col-md-12">
-            <i [class.text-danger]="showInvalidState(item.quizzNumber)">{{
-              item.question
-            }}</i>
+            <i>{{ item.question }}</i>
           </div>
           <div class="col-md-12 ml-4">
-            <div class="p-field-radiobutton m-1 mt-3">
+            <div
+              class="p-field-radiobutton m-1 mt-3"
+              [class.text-success]="showAsCorrectAnswer(item.quizzNumber, 1)"
+            >
               <p-radioButton
                 formControlName="question_{{ item.quizzNumber }}"
                 value="1"
                 label="{{ item.option1 }}"
               ></p-radioButton>
             </div>
-            <div class="p-field-radiobutton m-1">
+            <div
+              class="p-field-radiobutton m-1"
+              [class.text-success]="showAsCorrectAnswer(item.quizzNumber, 2)"
+            >
               <p-radioButton
                 formControlName="question_{{ item.quizzNumber }}"
                 value="2"
                 label="{{ item.option2 }}"
               ></p-radioButton>
             </div>
-            <div class="p-field-radiobutton m-1">
+            <div
+              class="p-field-radiobutton m-1"
+              [class.text-success]="showAsCorrectAnswer(item.quizzNumber, 3)"
+            >
               <p-radioButton
                 formControlName="question_{{ item.quizzNumber }}"
                 value="3"
@@ -46,7 +65,7 @@
         type="button"
         class="p-button-raised p-button-rounded submitButton"
         label="Send Quiz!"
-        (click)="sendQuiz()"
+        (click)="reviewQuiz()"
       ></button>
     </div>
   </p-panel>

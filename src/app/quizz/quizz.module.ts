@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserQuizzComponent } from './user-quizz/user-quizz.component';
-import { EditQuizzComponent } from './edit-quizz/edit-quizz.component';
 import { AddQuizzComponent } from './add-quizz/add-quizz.component';
-import { DeleteQuizzComponent } from './delete-quizz/delete-quizz.component';
 import { PanelModule } from 'primeng/panel';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -24,15 +22,20 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FileUploadModule } from 'primeng/fileupload';
 import { TakeQuizzComponent } from './take-quizz/take-quizz.component';
 import { AllQuizzComponent } from './all-quizz/all-quizz.component';
+import { DisplayResultComponent } from './display-result/display-result.component';
+import { ReviewComponent } from './review/review.component';
+import { QuizzService } from '../services/quizz.service';
+import { TakeQuizzPageComponent } from './take-quizz-page/take-quizz-page.component';
 
 @NgModule({
   declarations: [
     UserQuizzComponent,
-    EditQuizzComponent,
     AddQuizzComponent,
-    DeleteQuizzComponent,
     TakeQuizzComponent,
     AllQuizzComponent,
+    DisplayResultComponent,
+    ReviewComponent,
+    TakeQuizzPageComponent,
   ],
   imports: [
     CommonModule,
@@ -55,12 +58,11 @@ import { AllQuizzComponent } from './all-quizz/all-quizz.component';
   ],
   exports: [
     AddQuizzComponent,
-    DeleteQuizzComponent,
-    EditQuizzComponent,
     UserQuizzComponent,
     TakeQuizzComponent,
     AllQuizzComponent,
+    TakeQuizzPageComponent,
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [MessageService, ConfirmationService, QuizzService],
 })
 export class QuizzModule {}

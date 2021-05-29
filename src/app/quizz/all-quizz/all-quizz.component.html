@@ -3,7 +3,10 @@
     <p-table [value]="quizzes" [rowHover]="true" dataKey="id" class="m-5">
       <ng-template pTemplate="header">
         <tr>
-          <th style="width: 35%; text-align: center; vertical-align: middle">
+          <th style="width: 15%; text-align: center; vertical-align: middle">
+            Author
+          </th>
+          <th style="width: 20%; text-align: center; vertical-align: middle">
             Title
           </th>
           <th style="width: 15%; text-align: center; vertical-align: middle">
@@ -25,6 +28,9 @@
       </ng-template>
       <ng-template pTemplate="body" let-quiz>
         <tr>
+          <td style="text-align: center; vertical-align: middle">
+            {{ quiz.authorName }}
+          </td>
           <td style="text-align: center; vertical-align: middle">
             {{ quiz.title }}
           </td>
