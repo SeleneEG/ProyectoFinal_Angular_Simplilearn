@@ -1,1 +1,9 @@
-<p>take-quizz-page works!</p>
+<ng-container *ngIf="quiz && !answers">
+  <app-take-quizz
+    [quiz]="quiz"
+    (userAnswers)="onUserAnswers($event)"
+  ></app-take-quizz>
+</ng-container>
+<ng-container *ngIf="answers">
+  <app-display-result [quiz]="quiz" [answers]="answers"> </app-display-result>
+</ng-container>

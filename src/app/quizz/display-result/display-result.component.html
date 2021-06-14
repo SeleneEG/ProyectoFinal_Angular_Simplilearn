@@ -1,5 +1,5 @@
 <div class="mt-5">
-  <p-panel [header]="title">
+  <p-panel [header]="showTotalScore()">
     <ng-container *ngFor="let item of quiz.elements">
       <p-divider align="left">
         <div
@@ -64,7 +64,7 @@
         pButton
         type="button"
         class="p-button-raised p-button-rounded submitButton"
-        label="Send Quiz!"
+        label="Review Quiz!"
         (click)="reviewQuiz()"
       ></button>
     </div>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { Quizz } from 'src/app/models/quiz';
@@ -12,29 +12,23 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class TakeQuizzComponent implements OnInit {
   quizId: number;
-  quiz: Quizz;
+  @Input() quiz: Quizz;
   title: string;
   quizForm = new FormGroup({});
   checkAnswers: boolean = false;
-  @Output() userAnswers: EventEmitter<any> = new EventEmitter();
+  @Output() userAnswers: EventEmitter<
+    { quizzNumber: number; answer: number }[]
+  > = new EventEmitter();
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService,
     private quizService: QuizzService
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.quizId = params['id'];
-      this.quizService.getQuizById(this.quizId).subscribe((item) => {
-        this.quiz = item;
-        this.title = this.quiz.title;
-        this.generateQuizForm(this.quiz);
-      });
-    });
+    this.title = this.quiz.title;
+    this.generateQuizForm(this.quiz);
   }
 
   generateQuizForm(quiz: Quizz): void {
@@ -55,8 +49,8 @@ export class TakeQuizzComponent implements OnInit {
       this.quiz.elements.forEach((question) => {
         answers.push({
           quizzNumber: question.quizzNumber,
-          answer: +this.quizForm.controls['question_' + question.quizzNumber]
-            .value,
+          answer:
+            +this.quizForm.controls['question_' + question.quizzNumber].value,
         });
       });
 

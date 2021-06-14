@@ -1,0 +1,9 @@
+.submitButton {
+  width: 20em;
+  display: table;
+  margin: 0 auto;
+}
+
+.text-success {
+  font-weight: bold;
+}

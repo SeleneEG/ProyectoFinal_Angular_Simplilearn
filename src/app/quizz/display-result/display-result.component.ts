@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Quizz } from 'src/app/models/quiz';
 import { QuizzService } from 'src/app/services/quizz.service';
@@ -9,13 +9,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './display-result.component.html',
   styleUrls: ['./display-result.component.css'],
 })
-export class DisplayResultComponent implements OnInit {
-  quizId: number;
+export class DisplayResultComponent implements OnInit, AfterContentInit {
   @Input() quiz: Quizz;
   title: string;
   @Input() answers: { quizzNumber: number; answer: number }[];
   quizForm = new FormGroup({});
-  texto: string;
 
   constructor(
     private router: Router,
@@ -24,20 +22,20 @@ export class DisplayResultComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.generateQuizForm(this.quiz, this.answers);
+    this.generateQuizForm(this.quiz);
   }
 
-  generateQuizForm(
-    quiz: Quizz,
-    answers: { quizzNumber: number; answer: number }[]
-  ): void {
+  ngAfterContentInit() {
+    this.disabledForm(this.quiz, this.answers);
+  }
+
+  generateQuizForm(quiz: Quizz): void {
     quiz.elements.forEach((question) => {
       this.quizForm.addControl(
         'question_' + question.quizzNumber,
         new FormControl('', Validators.required)
       );
     });
-    this.disabledForm(quiz, answers);
   }
 
   disabledForm(
@@ -54,9 +52,13 @@ export class DisplayResultComponent implements OnInit {
     quiz: Quizz,
     answers: { quizzNumber: number; answer: number }[]
   ) {
-    quiz.elements.forEach((question) => {
-      this.quizForm.controls['question_' + question.quizzNumber].setValue(1);
-    });
+    answers['answers'].forEach(
+      (item: { quizzNumber: number; answer: number }) => {
+        this.quizForm.controls['question_' + item.quizzNumber].setValue(
+          item.answer
+        );
+      }
+    );
   }
 
   checkAnswer(quizzNumber: number): boolean {
@@ -77,4 +79,14 @@ export class DisplayResultComponent implements OnInit {
   }
 
   reviewQuiz() {}
+
+  showTotalScore(): string {
+    let totalScore: number = 0;
+    this.quiz.elements.forEach((item, index) => {
+      if (item.answer == this.answers['answers'][index].answer) {
+        totalScore++;
+      }
+    });
+    return `${this.quiz.title} (${totalScore} / ${this.quiz.elements.length}) `;
+  }
 }
