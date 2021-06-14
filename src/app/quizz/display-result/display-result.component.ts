@@ -78,7 +78,11 @@ export class DisplayResultComponent implements OnInit, AfterContentInit {
     );
   }
 
-  reviewQuiz() {}
+  reviewQuiz() {
+    this.router.navigate(['/content/review', this.quiz.id], {
+      relativeTo: this.route,
+    });
+  }
 
   showTotalScore(): string {
     let totalScore: number = 0;
