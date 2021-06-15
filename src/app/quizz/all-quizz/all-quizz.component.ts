@@ -24,7 +24,7 @@ export class AllQuizzComponent implements OnInit {
 
   ngOnInit(): void {
     this.quizService
-      .getQuizByUserId(+localStorage.getItem('userId'))
+      .getQuizFromOtherUsers(+localStorage.getItem('userId'))
       .subscribe((resp) => {
         this.quizzesAux = resp;
         this.quizzesAux.forEach((quizz) => {

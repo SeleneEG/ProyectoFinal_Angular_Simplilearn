@@ -1,1 +1,55 @@
-<p>review works!</p>
+<div class="mt-5">
+  <p-panel header="Review Quiz">
+    <form [formGroup]="reviewForm">
+      <div class="row mb-3 mt-4">
+        <div class="col-md-1">
+          <label>Raiting:</label>
+        </div>
+        <div class="col-md-3">
+          <p-rating [cancel]="false" formControlName="raiting"></p-rating>
+          <span
+            *ngIf="
+              reviewForm.controls['raiting'].touched &&
+              reviewForm.controls['raiting'].errors
+            "
+            class="text-danger small"
+          >
+            This field is required
+          </span>
+        </div>
+      </div>
+      <div class="row pt-3">
+        <div class="col-md-1">
+          <label for="username">Review:</label>
+        </div>
+        <div class="col-md-4">
+          <textarea
+            [rows]="5"
+            [cols]="40"
+            pInputTextarea
+            autoResize="autoResize"
+            formControlName="review"
+          ></textarea>
+          <span
+            *ngIf="
+              reviewForm.controls['review'].touched &&
+              reviewForm.controls['review'].errors
+            "
+            class="text-danger small"
+          >
+            This field is required
+          </span>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <button
+          pButton
+          type="button"
+          class="p-button-raised p-button-rounded submitButton"
+          label="Send Review!"
+          (click)="sendReview()"
+        ></button>
+      </div>
+    </form>
+  </p-panel>
+</div>

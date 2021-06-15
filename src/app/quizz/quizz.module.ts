@@ -26,6 +26,8 @@ import { DisplayResultComponent } from './display-result/display-result.componen
 import { ReviewComponent } from './review/review.component';
 import { QuizzService } from '../services/quizz.service';
 import { TakeQuizzPageComponent } from './take-quizz-page/take-quizz-page.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { TakeQuizzPageComponent } from './take-quizz-page/take-quizz-page.compon
     CardModule,
     CheckboxModule,
     FileUploadModule,
+    InputTextareaModule,
+    RatingModule,
   ],
   exports: [
     AddQuizzComponent,
@@ -62,6 +66,7 @@ import { TakeQuizzPageComponent } from './take-quizz-page/take-quizz-page.compon
     TakeQuizzComponent,
     AllQuizzComponent,
     TakeQuizzPageComponent,
+    ReviewComponent,
   ],
   providers: [MessageService, ConfirmationService, QuizzService],
 })

@@ -23,6 +23,10 @@ export class QuizzService {
     return this.http.get<Quizz[]>(`${this.endPointURL}`, { params });
   }
 
+  getQuizFromOtherUsers(usr: number): Observable<Quizz[]> {
+    return this.http.get<Quizz[]>(`${this.endPointURL}/?authorId_ne=${usr}`);
+  }
+
   getQuiz(): Observable<Quizz[]> {
     return this.http.get<Quizz[]>(`${this.endPointURL}`);
   }
