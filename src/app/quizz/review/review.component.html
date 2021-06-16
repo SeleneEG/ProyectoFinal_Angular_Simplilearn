@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="mt-5">
   <p-panel header="Review Quiz">
     <form [formGroup]="reviewForm">
@@ -47,6 +48,7 @@
           type="button"
           class="p-button-raised p-button-rounded submitButton"
           label="Send Review!"
+          [disabled]="disabledSendReview"
           (click)="sendReview()"
         ></button>
       </div>
