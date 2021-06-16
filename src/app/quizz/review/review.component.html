@@ -4,14 +4,14 @@
     <form [formGroup]="reviewForm">
       <div class="row mb-3 mt-4">
         <div class="col-md-1">
-          <label>Raiting:</label>
+          <label>rating:</label>
         </div>
         <div class="col-md-3">
-          <p-rating [cancel]="false" formControlName="raiting"></p-rating>
+          <p-rating [cancel]="false" formControlName="rating"></p-rating>
           <span
             *ngIf="
-              reviewForm.controls['raiting'].touched &&
-              reviewForm.controls['raiting'].errors
+              reviewForm.controls['rating'].touched &&
+              reviewForm.controls['rating'].errors
             "
             class="text-danger small"
           >

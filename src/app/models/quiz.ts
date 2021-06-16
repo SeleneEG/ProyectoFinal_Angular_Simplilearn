@@ -9,4 +9,5 @@ export interface Quizz {
   creationDate: Date;
   elements: QuizItem[];
   authorName?: string;
+  averageRating?: number;
 }

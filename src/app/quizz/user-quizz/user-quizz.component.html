@@ -7,7 +7,7 @@
           <th>Category</th>
           <th>Difficulty</th>
           <th>Creation Date</th>
-          <th># Questions</th>
+          <th>Rating</th>
           <th></th>
         </tr>
       </ng-template>
@@ -17,22 +17,20 @@
           <td>{{ quiz.category }}</td>
           <td>{{ quiz.difficulty }}</td>
           <td>{{ quiz.creationDate | date }}</td>
-          <td>{{ quiz.elements.length }}</td>
           <td>
-            <button
-              pButton
-              pRipple
+            <p-rating
+              [(ngModel)]="quiz.averageRating"
+              [cancel]="false"
+              readonly="true"
+            ></p-rating>
+          </td>
+          <td>
+            <p-splitButton
+              label="Edit"
               icon="pi pi-pencil"
-              class="p-button-rounded p-button-success p-mr-2"
-              (click)="editQuiz(quiz)"
-            ></button>
-            <button
-              pButton
-              pRipple
-              icon="pi pi-trash"
-              class="p-button-rounded p-button-warning"
-              (click)="deleteQuiz(quiz)"
-            ></button>
+              (onClick)="editQuiz(quiz)"
+              [model]="getItems(quiz)"
+            ></p-splitButton>
           </td>
         </tr>
       </ng-template>

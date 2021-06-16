@@ -16,6 +16,6 @@ export class ReviewService {
   }
 
   getQuizReviews(idQuiz: number): Observable<Review[]> {
-    return this.http.get<Review[]>(`${this.endPointURL}/idQuiz=${idQuiz}`);
+    return this.http.get<Review[]>(`${this.endPointURL}?idQuiz=${idQuiz}`);
   }
 }

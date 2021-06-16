@@ -22,7 +22,7 @@ export class ReviewComponent implements OnInit {
   ) {}
 
   reviewForm = new FormGroup({
-    raiting: new FormControl('', Validators.required),
+    rating: new FormControl('', Validators.required),
     review: new FormControl('', Validators.required),
   });
 
@@ -39,7 +39,7 @@ export class ReviewComponent implements OnInit {
         idQuiz: this.idQuiz,
         date: new Date().toString(),
         review: this.reviewForm.controls['review'].value,
-        raiting: this.reviewForm.controls['raiting'].value,
+        rating: this.reviewForm.controls['rating'].value,
         userId: +localStorage.getItem('userId'),
       };
       this.reviewService.createReview(review).subscribe(() => {

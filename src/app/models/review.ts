@@ -5,6 +5,6 @@ export interface Review {
   idQuiz: number;
   date: string;
   review: string;
-  raiting: number;
+  rating: number;
   userId: number;
 }

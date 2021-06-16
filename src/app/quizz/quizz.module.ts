@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserQuizzComponent } from './user-quizz/user-quizz.component';
 import { AddQuizzComponent } from './add-quizz/add-quizz.component';
 import { PanelModule } from 'primeng/panel';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
@@ -28,6 +28,7 @@ import { QuizzService } from '../services/quizz.service';
 import { TakeQuizzPageComponent } from './take-quizz-page/take-quizz-page.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RatingModule } from 'primeng/rating';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { RatingModule } from 'primeng/rating';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     InputTextModule,
     ButtonModule,
@@ -59,6 +61,7 @@ import { RatingModule } from 'primeng/rating';
     FileUploadModule,
     InputTextareaModule,
     RatingModule,
+    SplitButtonModule,
   ],
   exports: [
     AddQuizzComponent,
