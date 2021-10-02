@@ -29,6 +29,7 @@ import { TakeQuizzPageComponent } from './take-quizz-page/take-quizz-page.compon
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RatingModule } from 'primeng/rating';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { DisplayReviewComponent } from './display-review/display-review.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     DisplayResultComponent,
     ReviewComponent,
     TakeQuizzPageComponent,
+    DisplayReviewComponent,
   ],
   imports: [
     CommonModule,

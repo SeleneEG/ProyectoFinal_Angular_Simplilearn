@@ -6,5 +6,4 @@ export interface Review {
   date: string;
   review: string;
   rating: number;
-  userId: number;
 }

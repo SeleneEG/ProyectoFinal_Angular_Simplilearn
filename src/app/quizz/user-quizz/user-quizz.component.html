@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="mt-5">
   <p-panel header="Your Quizzes">
     <p-table [value]="quizzes" [rowHover]="true" dataKey="id" class="m-5">
@@ -7,7 +8,7 @@
           <th>Category</th>
           <th>Difficulty</th>
           <th>Creation Date</th>
-          <th>Rating</th>
+          <th>Average Rating</th>
           <th></th>
         </tr>
       </ng-template>
@@ -26,9 +27,8 @@
           </td>
           <td>
             <p-splitButton
-              label="Edit"
-              icon="pi pi-pencil"
-              (onClick)="editQuiz(quiz)"
+              label="Feedback"
+              (onClick)="quizFeddback(quiz)"
               [model]="getItems(quiz)"
             ></p-splitButton>
           </td>
@@ -37,3 +37,7 @@
     </p-table>
   </p-panel>
 </div>
+<p-confirmDialog
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+></p-confirmDialog>

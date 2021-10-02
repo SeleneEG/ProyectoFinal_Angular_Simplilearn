@@ -1,0 +1,26 @@
+<div class="mt-5">
+  <p-panel header="Your Feedback">
+    <p-table [value]="reviews" [rowHover]="true" dataKey="id" class="m-5">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Date</th>
+          <th>Rating</th>
+          <th>Review</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-review>
+        <tr>
+          <td>{{ review.date | date }}</td>
+          <td>
+            <p-rating
+              [(ngModel)]="review.rating"
+              [cancel]="false"
+              readonly="true"
+            ></p-rating>
+          </td>
+          <td>{{ review.review }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-panel>
+</div>

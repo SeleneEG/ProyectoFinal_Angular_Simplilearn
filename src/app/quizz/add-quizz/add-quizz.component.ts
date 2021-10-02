@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { QuizItem } from 'src/app/models/quiz-item';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
-
+import { Router, ActivatedRoute } from '@angular/router';
 import { QuizCategoryService } from 'src/app/services/quiz-category.service';
 import { Quizz } from 'src/app/models/quiz';
 import { QuizzService } from 'src/app/services/quizz.service';
@@ -49,6 +49,8 @@ export class AddQuizzComponent implements OnInit {
   ];
 
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private quizCategoryService: QuizCategoryService,
@@ -92,6 +94,11 @@ export class AddQuizzComponent implements OnInit {
         detail: `Quiz '${quiz.title}' saved`,
         life: 3000,
       });
+      setTimeout(() => {
+        this.router.navigate(['/content/user-quizz'], {
+          relativeTo: this.route,
+        });
+      }, 1000);
     });
   }
 
@@ -110,11 +117,16 @@ export class AddQuizzComponent implements OnInit {
         this.quizForm.reset();
         this.questions = [];
         this.messageService.add({
-          severity: 'success',
+          severity: ' ',
           summary: 'Successful',
           detail: `Quiz '${quiz.title}' saved`,
           life: 3000,
         });
+        setTimeout(() => {
+          this.router.navigate(['/content/user-quizz'], {
+            relativeTo: this.route,
+          });
+        }, 1000);
       });
     } else {
       this.quizForm.markAllAsTouched();

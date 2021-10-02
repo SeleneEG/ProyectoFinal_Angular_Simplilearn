@@ -34,4 +34,8 @@ export class QuizzService {
   getQuizById(id: number): Observable<Quizz> {
     return this.http.get<Quizz>(`${this.endPointURL}/${id}`);
   }
+
+  deleteQuiz(id): Observable<Quizz> {
+    return this.http.delete<Quizz>(`${this.endPointURL}/${id}`);
+  }
 }

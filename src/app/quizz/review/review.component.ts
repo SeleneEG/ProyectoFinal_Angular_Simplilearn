@@ -40,7 +40,6 @@ export class ReviewComponent implements OnInit {
         date: new Date().toString(),
         review: this.reviewForm.controls['review'].value,
         rating: this.reviewForm.controls['rating'].value,
-        userId: +localStorage.getItem('userId'),
       };
       this.reviewService.createReview(review).subscribe(() => {
         this.messageService.add({
