@@ -1,0 +1,40 @@
+{
+  "title": "General Knowledge 2",
+  "category": "Miscellaneous",
+  "difficulty": "Easy",
+  "creationDate": "2021-04-04T23:05:28.780Z",
+  "elements": [
+    {
+      "quizzNumber": 1,
+      "question": "Where is Crete?",
+      "option1": "In the Mediterranean Sea",
+      "option2": "In the Black Sea",
+      "option3": "In the Caribean Sea",
+      "answer": "1"
+    },
+    {
+      "quizzNumber": 2,
+      "question": "The symbol for infinity looks like what number on its side?",
+      "option1": "3",
+      "option2": "8",
+      "option3": "9",
+      "answer": "2"
+    },
+    {
+      "quizzNumber": 3,
+      "question": "Which scientist is well know for his theory of relativity?",
+      "option1": "Alfred Nobel",
+      "option2": "Albert Einstein",
+      "option3": "John Lennon",
+      "answer": "2"
+    },
+    {
+      "quizzNumber": 4,
+      "question": "What does the CIA stand for?",
+      "option1": "Criminal Investigation Association",
+      "option2": "Crime In Action",
+      "option3": "Central Intelligence Agency",
+      "answer": "3"
+    }
+  ]
+}

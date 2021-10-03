@@ -16,6 +16,7 @@ export class UserQuizzComponent implements OnInit {
   items: MenuItem[];
   val = 0;
   msgs: Message[] = [];
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,

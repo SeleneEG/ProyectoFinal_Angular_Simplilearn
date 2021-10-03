@@ -1,0 +1,40 @@
+{
+  "title": "General Knowledge 1",
+  "category": "Miscellaneous",
+  "difficulty": "Easy",
+  "creationDate": "2021-04-04T23:05:28.780Z",
+  "elements": [
+    {
+      "quizzNumber": 1,
+      "question": "What caused the Titanic to sink?",
+      "option1": "A collision with massive iceberg",
+      "option2": "Hit by a torpedo from a warship",
+      "option3": "Malfuctioning engines exploded",
+      "answer": "1"
+    },
+    {
+      "quizzNumber": 2,
+      "question": "Who is Stefani Joanne Angelina Germanotta?",
+      "option1": "Alma Lynn Cook",
+      "option2": "Lady Gaga",
+      "option3": "Priscilla Ahn",
+      "answer": "2"
+    },
+    {
+      "quizzNumber": 3,
+      "question": "Who said: One small step for man, one giant leap for mankind?",
+      "option1": "Neil Armstrong",
+      "option2": "John Lennon",
+      "option3": "Buzz Lightyear",
+      "answer": "1"
+    },
+    {
+      "quizzNumber": 4,
+      "question": "What is a Blue Moon?",
+      "option1": "An exra full moon that appears in a 12 moon cycle",
+      "option2": "A planet that has become lifeless",
+      "option3": "A breakfast cereal",
+      "answer": "1"
+    }
+  ]
+}

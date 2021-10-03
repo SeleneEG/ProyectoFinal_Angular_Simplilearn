@@ -1,0 +1,63 @@
+{
+  "users": [
+    {
+      "username": "SeleneEG",
+      "password": "123",
+      "email": "seg@gmail.com",
+      "id": 1
+    },
+    {
+      "username": "ABC",
+      "password": "abc",
+      "email": "abc@gmail.com",
+      "id": 2
+    }
+  ],
+  "quiz_category": [
+    {
+      "id": 1,
+      "name": "Science"
+    },
+    {
+      "id": 2,
+      "name": "Computer Science and Skills"
+    },
+    {
+      "id": 3,
+      "name": "Mathematics"
+    },
+    {
+      "id": 4,
+      "name": "Miscellaneous"
+    }
+  ],
+  "quiz": [
+    {
+      "authorId": 2,
+      "title": "abc",
+      "category": "Computer Science and Skills",
+      "difficulty": "Medium",
+      "creationDate": "2021-04-04T23:13:59.995Z",
+      "elements": [
+        {
+          "quizzNumber": 1,
+          "question": "sds",
+          "option1": "a",
+          "option2": "a",
+          "option3": "a",
+          "answer": "1"
+        }
+      ],
+      "id": 3
+    }
+  ],
+  "review": [
+    {
+      "idQuiz": "3",
+      "date": "Sat Oct 02 2021 13:23:34 GMT-0500 (hora de verano central)",
+      "review": "I did not like the quiz :(",
+      "rating": 2,
+      "id": 1
+    }
+  ]
+}
