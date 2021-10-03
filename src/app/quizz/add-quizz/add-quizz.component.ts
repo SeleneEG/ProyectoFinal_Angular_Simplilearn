@@ -68,8 +68,6 @@ export class AddQuizzComponent implements OnInit {
 
     let fileReader = new FileReader();
     fileReader.onload = (e) => {
-      // let aux: string = fileReader.result.toString();
-      // this.fileContent = JSON.parse(aux);
       this.fileContent = JSON.parse(fileReader.result.toString());
     };
     fileReader.readAsText(this.jsonFile);
@@ -107,8 +105,8 @@ export class AddQuizzComponent implements OnInit {
       let quiz: Quizz = {
         authorId: +localStorage.getItem('userId'),
         title: this.quizForm.controls['title'].value,
-        category: this.quizForm.controls['category'].value,
-        difficulty: this.quizForm.controls['difficulty'].value,
+        category: this.quizForm.controls['category'].value.name,
+        difficulty: this.quizForm.controls['difficulty'].value.value,
         creationDate: new Date(),
         elements: this.questions,
       };

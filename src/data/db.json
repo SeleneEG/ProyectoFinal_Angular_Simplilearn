@@ -7,10 +7,10 @@
       "id": 1
     },
     {
-      "username": "ABC",
-      "password": "abc",
-      "email": "abc@gmail.com",
-      "id": 2
+      "username": "UserTest",
+      "password": "1234",
+      "email": "user_test@gmail.com",
+      "id": 3
     }
   ],
   "quiz_category": [
@@ -33,31 +33,107 @@
   ],
   "quiz": [
     {
-      "authorId": 2,
-      "title": "abc",
-      "category": "Computer Science and Skills",
-      "difficulty": "Medium",
-      "creationDate": "2021-04-04T23:13:59.995Z",
+      "authorId": 3,
+      "title": "General Knowledge 1",
+      "category": "Miscellaneous",
+      "difficulty": "Easy",
+      "creationDate": "2021-10-03T01:51:59.036Z",
       "elements": [
         {
           "quizzNumber": 1,
-          "question": "sds",
-          "option1": "a",
-          "option2": "a",
-          "option3": "a",
+          "question": "What caused the Titanic to sink?",
+          "option1": "A collision with massive iceberg",
+          "option2": "Hit by a torpedo from a warship",
+          "option3": "Malfuctioning engines exploded",
           "answer": "1"
+        },
+        {
+          "quizzNumber": 2,
+          "question": "Who is Stefani Joanne Angelina Germanotta?",
+          "option1": "Alma Lynn Cook",
+          "option2": "Lady Gaga",
+          "option3": "Priscilla Ahn",
+          "answer": "2"
+        },
+        {
+          "quizzNumber": 3,
+          "question": "Who said: One small step for man, one giant leap for mankind?",
+          "option1": "Neil Armstrong",
+          "option2": "John Lennon",
+          "option3": "Buzz Lightyear",
+          "answer": "1"
+        },
+        {
+          "quizzNumber": 4,
+          "question": "What is a Blue Moon?",
+          "option1": "An exra full moon that appears in a 12 moon cycle",
+          "option2": "A planet that has become lifeless",
+          "option3": "A breakfast cereal",
+          "answer": "1"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "authorId": 3,
+      "title": "General Knowledge 2",
+      "category": "Miscellaneous",
+      "difficulty": "Low",
+      "creationDate": "2021-10-03T01:58:05.360Z",
+      "elements": [
+        {
+          "quizzNumber": 1,
+          "question": "Where is Crete?",
+          "option1": "In the Mediterranean Sea",
+          "option2": "In the Black Sea",
+          "option3": "In the Caribean Sea",
+          "answer": "1"
+        },
+        {
+          "quizzNumber": 2,
+          "question": "The symbol for infinity looks like what number on its side?",
+          "option1": "3",
+          "option2": "8",
+          "option3": "9",
+          "answer": "2"
+        },
+        {
+          "quizzNumber": 3,
+          "question": "Which scientist is well know for his theory of relativity?",
+          "option1": "Alfred Nobel",
+          "option2": "Albert Einstein",
+          "option3": "John Lennon",
+          "answer": "2"
+        },
+        {
+          "quizzNumber": 4,
+          "question": "What does the CIA stand for?",
+          "option1": "Criminal Investigation Association",
+          "option2": "Crime In Action",
+          "option3": "Central Intelligence Agency",
+          "answer": "3"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "authorId": 3,
+      "title": "zxcz",
+      "category": "Computer Science and Skills",
+      "difficulty": "Low",
+      "creationDate": "2021-10-03T02:00:47.437Z",
+      "elements": [
+        {
+          "quizzNumber": 1,
+          "question": "zxc",
+          "option1": "zxczx",
+          "option2": "zxczxc",
+          "option3": "zxczxczxc",
+          "answer": "2"
         }
       ],
       "id": 3
     }
   ],
-  "review": [
-    {
-      "idQuiz": "3",
-      "date": "Sat Oct 02 2021 13:23:34 GMT-0500 (hora de verano central)",
-      "review": "I did not like the quiz :(",
-      "rating": 2,
-      "id": 1
-    }
-  ]
+  "review": []
 }

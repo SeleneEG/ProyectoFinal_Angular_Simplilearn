@@ -1,5 +1,16 @@
 <div class="mt-5">
-  <p-panel header="All Quizzes">
+  <div *ngIf="quizzes.length == 0">
+    <p-panel [showHeader]="false">
+      <div style="text-align: center">
+        <img
+          src="https://c.tenor.com/sKDzNg2OwAsAAAAC/sad-face-emoji.gif"
+          style="text-align: center"
+        />
+        <h3>There are no quizzes available</h3>
+      </div>
+    </p-panel>
+  </div>
+  <p-panel *ngIf="quizzes.length > 0" header="All Quizzes">
     <p-table [value]="quizzes" [rowHover]="true" dataKey="id" class="m-5">
       <ng-template pTemplate="header">
         <tr>
