@@ -89,7 +89,7 @@ export class UserQuizzComponent implements OnInit {
   quizFeddback(quiz) {
     this.reviewService.getQuizReviews(quiz.id).subscribe((reviews) => {
       if (reviews.length > 0) {
-        this.router.navigate(['../display-review', quiz.id], {
+        this.router.navigate(['/content/display-review', quiz.id], {
           relativeTo: this.route,
         });
       } else {

@@ -115,25 +115,15 @@
         }
       ],
       "id": 2
-    },
-    {
-      "authorId": 3,
-      "title": "zxcz",
-      "category": "Computer Science and Skills",
-      "difficulty": "Low",
-      "creationDate": "2021-10-03T02:00:47.437Z",
-      "elements": [
-        {
-          "quizzNumber": 1,
-          "question": "zxc",
-          "option1": "zxczx",
-          "option2": "zxczxc",
-          "option3": "zxczxczxc",
-          "answer": "2"
-        }
-      ],
-      "id": 3
     }
   ],
-  "review": []
+  "review": [
+    {
+      "idQuiz": "1",
+      "date": "Sat Oct 02 2021 21:12:43 GMT-0500 (hora de verano central)",
+      "review": "Cool quiz! ",
+      "rating": 4,
+      "id": 1
+    }
+  ]
 }
