@@ -70,7 +70,7 @@ export class UserQuizzComponent implements OnInit {
               this.messageService.add({
                 severity: 'success',
                 summary: 'Confirmed',
-                detail: `Record deleted`,
+                detail: `Quiz deleted`,
                 life: 3000,
               });
             });

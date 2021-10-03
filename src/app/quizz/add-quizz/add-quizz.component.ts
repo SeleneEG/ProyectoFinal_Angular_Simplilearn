@@ -106,18 +106,18 @@ export class AddQuizzComponent implements OnInit {
     if (this.quizForm.valid && this.questions.length > 0) {
       let quiz: Quizz = {
         authorId: +localStorage.getItem('userId'),
-        title: this.fileContent['title'],
-        category: this.fileContent['category'],
-        difficulty: this.fileContent['difficulty'],
+        title: this.quizForm.controls['title'].value,
+        category: this.quizForm.controls['category'].value,
+        difficulty: this.quizForm.controls['difficulty'].value,
         creationDate: new Date(),
-        elements: this.fileContent['elements'],
+        elements: this.questions,
       };
 
       this.quizService.createQuiz(quiz).subscribe((resp) => {
         this.quizForm.reset();
         this.questions = [];
         this.messageService.add({
-          severity: ' ',
+          severity: 'success',
           summary: 'Successful',
           detail: `Quiz '${quiz.title}' saved`,
           life: 3000,
