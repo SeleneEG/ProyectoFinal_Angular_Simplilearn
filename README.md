@@ -11,3 +11,14 @@ json-server --watch db.json
 Start angular project with instruction
 
 npm start
+
+
+
+Users already registered in the application
+
+username: SeleneEG
+password: 123
+
+
+username: UserTest
+password: 1234
